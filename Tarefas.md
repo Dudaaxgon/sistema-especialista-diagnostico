@@ -15,7 +15,7 @@
 ### Maria Eduarda (Duda)
 - [ ] Definir o tipo de encadeamento (para frente ou para trás) e a justificativa
 - [ ] Escrever as regras dos sintomas **"não liga"**, **"sistema não inicia"** e **"lento, travando ou fechando programas"** (mínimo 6 regras cada)
-- [ ] Implementar o **motor de inferência**
+- [ ] Implementar o **motor de inferência**, incluindo condições negadas (ex.: `NÃO problema_disco`) e distinguindo fato falso de fato desconhecido; só avaliar negação após coletar as respostas aplicáveis e concluir as inferências
 - [ ] Implementar o **módulo de explicação** ("por quê / como")
 - [ ] Implementar os **testes automatizados** a partir dos cenários escritos pela Luciana
 - [ ] Converter as regras de todas para o formato final usado pelo código

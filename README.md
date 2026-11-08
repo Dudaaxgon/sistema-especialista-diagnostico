@@ -71,6 +71,9 @@ AÇÃO:      cliente_resolve
 EXPLICAÇÃO: O equipamento funcionou em outra tomada, então o defeito está na tomada original.
 ```
 
+### Quando mais de uma regra é ativada
+O motor deve verificar todas as regras do sintoma, sem parar na primeira que corresponder. Se mais de uma regra produzir um diagnóstico final, o Dr. Byte deve apresentar todos os diagnósticos distintos e suas explicações, sem escolher um deles arbitrariamente. Se as ações forem diferentes e pelo menos uma exigir `encaminhar_bancada`, essa orientação deve vir primeiro; ações de `cliente_resolve` não devem ser apresentadas como solução suficiente para os demais diagnósticos. Conclusões intermediárias servem para ativar outras regras e não são exibidas como diagnósticos finais.
+
 ### Glossário de conclusões intermediárias compartilhadas
 Conclusões usadas por regras de mais de um sintoma. **Todas devem usar exatamente estes nomes.** Para criar uma nova, adicione aqui antes de usar.
 
@@ -78,7 +81,7 @@ Conclusões usadas por regras de mais de um sintoma. **Todas devem usar exatamen
 |---|---|---|
 | `superaquecimento` | O equipamento está esquentando além do normal | Desliga sozinho, Lento |
 | `problema_disco` | Há indícios de falha no disco (HD/SSD) | Sistema não inicia, Lento |
-| `alimentacao_externa_ok` | Tomada e carregador/fonte estão funcionando | Não liga, Não carrega |
+| `alimentacao_externa_ok` | As verificações externas de energia (tomada, cabos e controles acessíveis) estão corretas | Não liga, Não carrega |
 
 ### Dicionário de regras
 | ID | Sintoma | Condições (SE) | Conclusão (ENTÃO) | Tipo |
