@@ -10,11 +10,22 @@
 
 ---
 
+## Status atual (atualizado em 10/11)
+
+- ✅ Regras de 5 dos 6 sintomas escritas e no repositório
+- 🔄 Ajustes nas regras de "internet não conecta" e "não carrega" solicitados à Luiza
+- ⏳ Regras de "desliga sozinho" (Luciana)
+- ⏳ Primeiro commit: 2 de 3 integrantes
+- 🔜 Próxima etapa: motor de inferência (Duda)
+
+---
+
 ## Tarefas por pessoa
 
 ### Maria Eduarda (Duda)
 - [ ] Definir o tipo de encadeamento (para frente ou para trás) e a justificativa
-- [ ] Escrever as regras dos sintomas **"não liga"**, **"sistema não inicia"** e **"lento, travando ou fechando programas"** (mínimo 6 regras cada)
+- [x] Escrever as regras dos sintomas **"não liga"**, **"sistema não inicia"** e **"lento, travando ou fechando programas"** (mínimo 6 regras cada)
+- [x] Revisar as regras da Luiza e enviar os ajustes necessários
 - [ ] Implementar o **motor de inferência**, incluindo condições negadas (ex.: `NÃO problema_disco`) e distinguindo fato falso de fato desconhecido; só avaliar negação após coletar as respostas aplicáveis e concluir as inferências
 - [ ] Implementar o **módulo de explicação** ("por quê / como")
 - [ ] Implementar os **testes automatizados** a partir dos cenários escritos pela Luciana
@@ -23,23 +34,23 @@
 - [ ] Fazer uma **chamada curta explicando o código** para o grupo antes da gravação
 
 ### Luiza Ribeiro
-- [ ] Escrever as regras do sintoma **"não carrega"** (mínimo 6 regras; só notebook; incluir o caso do carregador conectando e desconectando)
-- [ ] Escrever as regras do sintoma **"internet não conecta"** (mínimo 6 regras)
+- [x] Escrever as regras do sintoma **"não carrega"** (mínimo 6 regras; só notebook; incluir o caso do carregador conectando e desconectando)
+- [x] Escrever as regras do sintoma **"internet não conecta"** (mínimo 6 regras)
+- [ ] Aplicar os ajustes da revisão (fato com espaço no nome, INT-R3, INT-R4, INT-R5, fato sem uso, regras intermediárias, `alimentacao_externa_ok` no "não carrega")
 - [ ] Implementar a **interface de perguntas e respostas** (terminal)
 - [ ] Implementar o **tratamento de entradas inválidas** e o caso **"não foi possível concluir"**
 
 ### Luciana Tavares
-*Tarefas flexíveis: com exceção das regras, nenhuma delas trava o trabalho das outras.*
 - [ ] Escrever as regras do sintoma **"desliga sozinho"** (mínimo 6 regras; usar a conclusão `superaquecimento` do glossário)
 - [ ] Preencher a seção **"Contexto de negócio"** do README
 - [ ] Escrever **cenários de teste** em texto (sem código): para cada sintoma, 2 situações com as respostas do cliente e o diagnóstico esperado
-- [ ] Manter o **dicionário de regras** do README atualizado a partir das regras escritas pelo grupo
-- [ ] Escrever o **roteiro do vídeo** (10 min, dividindo o tempo entre as três)
 - [ ] Montar o **PDF de entrega** (nomes completos, link do GitHub, link do vídeo)
 - [ ] Conferir que o **repositório está público** e que o **link do vídeo está com visualização liberada** (abrir os dois links numa aba anônima para testar)
 
 ### Todas
-- [ ] Fazer pelo menos um commit nesta semana (ex.: conferir seu nome na tabela de integrantes do README)
+- [ ] Fazer pelo menos um commit nesta semana (2 de 3 já fizeram)
+- [ ] Preencher o **dicionário de regras** do README com as **próprias regras**
+- [ ] Montar juntas o **roteiro do vídeo** (10 min, dividindo o tempo entre as três)
 - [ ] Usar **exatamente os nomes do glossário** de conclusões intermediárias (seção 5 do README). Para criar uma conclusão compartilhada nova, adicionar no glossário antes de usar
 - [ ] Ler e entender o código completo antes da gravação
 - [ ] Testar o sistema na própria máquina seguindo o "Como executar" do README
@@ -64,19 +75,21 @@ Use o formato da seção 5 do README. Para cada sintoma:
 
 ## Cronograma
 
-| Prazo | Entrega | Responsável |
-|---|---|---|
-| **10/11** | Primeiro commit de cada pessoa | Todas |
-| **11/11** | Regras de "não liga", "não carrega" e "internet não conecta" escritas no formato padrão | Duda, Luiza |
-| **14/11** | Regras de "sistema não inicia", "lento" e "desliga sozinho" escritas | Duda, Luciana |
-| **15/11** | Motor de inferência + explicação funcionando com as regras de "não liga" | Duda |
-| **16/11** | Contexto de negócio no README + cenários de teste escritos | Luciana |
-| **20/11** | Interface, exceções e testes automatizados prontos; todas as regras integradas | Luiza, Duda |
-| **22/11** | Dicionário de regras e roteiro do vídeo prontos | Luciana |
-| **22/11** | Chamada de explicação do código para o grupo | Duda |
-| **23/11** | Sistema completo, testado em pelo menos 2 computadores diferentes; README finalizado | Todas |
-| **24–26/11** | Gravação do vídeo (entre 9 e 11 minutos) | Todas |
-| **27/11** | PDF montado e enviado no Teams | Luciana |
+| Prazo | Entrega | Responsável | Status |
+|---|---|---|---|
+| **10/11** | Primeiro commit de cada pessoa | Todas | 🔄 2 de 3 |
+| **11/11** | Regras de "não liga", "não carrega" e "internet não conecta" escritas no formato padrão | Duda, Luiza | ✅ (ajustes da Luiza pendentes) |
+| **14/11** | Regras de "sistema não inicia", "lento" e "desliga sozinho" escritas | Duda, Luciana | 🔄 Duda ✅ · Luciana pendente |
+| **15/11** | Motor de inferência + explicação funcionando com as regras de "não liga" | Duda | ⏳ |
+| **16/11** | Contexto de negócio no README + cenários de teste escritos | Luciana | ⏳ |
+| **20/11** | Interface, exceções e testes automatizados prontos; todas as regras integradas | Luiza, Duda | ⏳ |
+| **22/11** | Dicionário de regras e roteiro do vídeo prontos | Todas | ⏳ |
+| **22/11** | Chamada de explicação do código para o grupo | Duda | ⏳ |
+| **23/11** | Sistema completo, testado em pelo menos 2 computadores diferentes; README finalizado | Todas | ⏳ |
+| **24–26/11** | Gravação do vídeo (entre 9 e 11 minutos) | Todas | ⏳ |
+| **27/11** | PDF montado e enviado no Teams | Luciana | ⏳ |
+
+Legenda: ✅ concluído · 🔄 em andamento · ⏳ não iniciado
 
 ### Diferenciais (só se sobrar tempo, depois de 20/11)
 - [ ] Base de conhecimento em arquivo externo (JSON)
