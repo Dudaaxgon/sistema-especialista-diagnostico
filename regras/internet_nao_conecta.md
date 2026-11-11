@@ -56,13 +56,12 @@ SE:     rede_aparece = sim
         E internet_voltou_apos_reiniciar = nao
 ENTÃO:  causa = possivel_falha_no_roteador_ou_provedor
 TIPO:   final
-AÇÃO:   encaminhar_bancada
+AÇÃO:   contacta_provedor
 EXPLICAÇÃO: Outros dispositivos também não conectam e reiniciar o roteador não resolveu. O problema pode estar no roteador ou no provedor de internet.
 
 ### INT-R5 — Falha apenas no computador
 SE:     rede_aparece = sim
         E outros_dispositivos_conectam = sim
-        E cabo_rede_conectado = nao
         E wifi_ligado = sim
 ENTÃO:  causa = possivel_configuracao_de_rede
 TIPO:   final
