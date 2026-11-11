@@ -47,7 +47,7 @@ SE:     rede_aparece = nao
 ENTÃO:  causa = possivel_falha_no_adaptador_wifi
 TIPO:   final
 AÇÃO:   encaminhar_bancada
-EXPLICAÇÃO: A rede não aparece e a conexão por cabo também não funciona. Pode haver uma falha no adaptador de rede ou no equipamento.
+EXPLICAÇÃO: A rede não aparece, mas outros dispositivos conectam.
 
 ### INT-R4 — Problema no roteador ou na internet da residência
 SE:     rede_aparece = sim
