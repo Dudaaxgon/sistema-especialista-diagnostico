@@ -55,8 +55,7 @@ EXPLICAÇÃO: A luz do carregador não acende e o notebook também não indica c
 
 ### NC-R4 — Bateria não aumenta a carga
 SE:     tipo_equipamento = notebook
-        E carregador_conectado = sim
-        E notebook_indica_carregamento = sim
+        E alimentacao_externa_ok
         E bateria_aumenta_carga = nao
 ENTÃO:  causa = possivel_falha_bateria
 TIPO:   final
@@ -80,3 +79,11 @@ ENTÃO:  causa = carregador_ou_cabo_danificado
 TIPO:   final
 AÇÃO:   encaminhar_bancada
 EXPLICAÇÃO: Um cabo cortado, rachado ou com partes expostas oferece risco e pode impedir o carregamento. Pare de usá-lo e procure a assistência.
+
+### NC-R7 — Notebook reconhece o carregador
+SE:     tipo_equipamento = notebook
+        E carregador_conectado = sim
+        E notebook_indica_carregamento = sim
+ENTÃO:  alimentacao_externa_ok
+TIPO:   intermediária
+EXPLICAÇÃO: O notebook indica que o carregador foi conectado e reconhece a fonte de energia. A regra seguinte verifica se, mesmo assim, a bateria não aumenta a carga.
