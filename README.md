@@ -42,17 +42,17 @@ Algumas informações não são sintomas, mas pistas que ajudam a estreitar a ca
 ## 3. Abordagem técnica
 
 - **Linguagem:** Python
-- **Justificativa:** [escrever 2–3 frases — ex.: domínio da equipe, controle total sobre o motor de inferência e o módulo de explicação, facilidade para base de conhecimento externa (JSON) e testes automatizados, baixo risco de execução]
-- **Tipo de encadeamento:** [a definir — para frente ou para trás, com justificativa]
+- **Justificativa:** Python foi escolhido por ser a linguagem trabalhada pela equipe e permitir representar fatos e regras com estruturas simples. Isso facilita implementar e explicar o motor de inferência e o módulo de explicação, além de integrar a interface de terminal.
+- **Tipo de encadeamento:** para frente. O motor parte das respostas coletadas, aplica as regras que correspondem a esses fatos e propaga conclusões intermediárias até chegar a zero ou mais diagnósticos finais. Esse fluxo combina com a triagem, que começa pelas respostas do cliente e não por uma causa previamente escolhida.
 
 ## 4. Arquitetura
 
 | Componente | Função | Arquivo |
 |---|---|---|
-| Base de conhecimento | Fatos e regras do domínio | [a definir] |
-| Memória de trabalho | Fatos coletados na sessão atual | [a definir] |
-| Motor de inferência | Aplica as regras sobre os fatos | [a definir] |
-| Módulo de explicação | Justifica a conclusão ("por quê / como") | [a definir] |
+| Base de conhecimento | Regras lidas dos arquivos Markdown | `regras/*.md` |
+| Memória de trabalho | Respostas coletadas na sessão atual | Dicionário recebido por `motor.inferir` |
+| Motor de inferência | Aplica regras por encadeamento para frente | `motor.py` |
+| Módulo de explicação | Retorna causa, ação, regra(s) disparada(s) e justificativa | `motor.py` (campos `como`, `por_que` e `explicacao`) |
 | Interface | Perguntas e respostas com o cliente | [a definir] |
 
 ## 5. Base de conhecimento

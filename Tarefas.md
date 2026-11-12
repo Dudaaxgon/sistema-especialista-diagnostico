@@ -10,13 +10,12 @@
 
 ---
 
-## Status atual (atualizado em 10/11)
+## Status atual (atualizado em 11/11)
 
-- ✅ Regras de 5 dos 6 sintomas escritas e no repositório
-- 🔄 Ajustes nas regras de "internet não conecta" e "não carrega" solicitados à Luiza
-- ⏳ Regras de "desliga sozinho" (Luciana)
-- ⏳ Primeiro commit: 2 de 3 integrantes
-- 🔜 Próxima etapa: motor de inferência (Duda)
+- ✅ Regras dos 6 sintomas escritas e no repositório
+- ✅ Ajustes nas regras da Luiza aplicados
+- ✅ Primeiro commit: 3 de 3 integrantes
+- 🔜 Próxima etapa: motor de inferência (Duda), prazo 15/11
 
 ---
 
@@ -36,19 +35,19 @@
 ### Luiza Ribeiro
 - [x] Escrever as regras do sintoma **"não carrega"** (mínimo 6 regras; só notebook; incluir o caso do carregador conectando e desconectando)
 - [x] Escrever as regras do sintoma **"internet não conecta"** (mínimo 6 regras)
-- [ ] Aplicar os ajustes da revisão (fato com espaço no nome, INT-R3, INT-R4, INT-R5, fato sem uso, regras intermediárias, `alimentacao_externa_ok` no "não carrega")
+- [x] Aplicar os ajustes da revisão (fato com espaço no nome, INT-R3, INT-R4, INT-R5, fato sem uso, regras intermediárias, `alimentacao_externa_ok` no "não carrega")
 - [ ] Implementar a **interface de perguntas e respostas** (terminal)
 - [ ] Implementar o **tratamento de entradas inválidas** e o caso **"não foi possível concluir"**
 
 ### Luciana Tavares
-- [ ] Escrever as regras do sintoma **"desliga sozinho"** (mínimo 6 regras; usar a conclusão `superaquecimento` do glossário)
+- [x] Escrever as regras do sintoma **"desliga sozinho"** (mínimo 6 regras; usar a conclusão `superaquecimento` do glossário)
 - [ ] Preencher a seção **"Contexto de negócio"** do README
 - [ ] Escrever **cenários de teste** em texto (sem código): para cada sintoma, 2 situações com as respostas do cliente e o diagnóstico esperado
 - [ ] Montar o **PDF de entrega** (nomes completos, link do GitHub, link do vídeo)
 - [ ] Conferir que o **repositório está público** e que o **link do vídeo está com visualização liberada** (abrir os dois links numa aba anônima para testar)
 
 ### Todas
-- [ ] Fazer pelo menos um commit nesta semana (2 de 3 já fizeram)
+- [x] Fazer pelo menos um commit nesta semana
 - [ ] Preencher o **dicionário de regras** do README com as **próprias regras**
 - [ ] Montar juntas o **roteiro do vídeo** (10 min, dividindo o tempo entre as três)
 - [ ] Usar **exatamente os nomes do glossário** de conclusões intermediárias (seção 5 do README). Para criar uma conclusão compartilhada nova, adicionar no glossário antes de usar
@@ -77,10 +76,10 @@ Use o formato da seção 5 do README. Para cada sintoma:
 
 | Prazo | Entrega | Responsável | Status |
 |---|---|---|---|
-| **10/11** | Primeiro commit de cada pessoa | Todas | 🔄 2 de 3 |
-| **11/11** | Regras de "não liga", "não carrega" e "internet não conecta" escritas no formato padrão | Duda, Luiza | ✅ (ajustes da Luiza pendentes) |
-| **14/11** | Regras de "sistema não inicia", "lento" e "desliga sozinho" escritas | Duda, Luciana | 🔄 Duda ✅ · Luciana pendente |
-| **15/11** | Motor de inferência + explicação funcionando com as regras de "não liga" | Duda | ⏳ |
+| **10/11** | Primeiro commit de cada pessoa | Todas | ✅ |
+| **11/11** | Regras de "não liga", "não carrega" e "internet não conecta" escritas no formato padrão | Duda, Luiza | ✅ |
+| **14/11** | Regras de "sistema não inicia", "lento" e "desliga sozinho" escritas | Duda, Luciana | ✅ |
+| **15/11** | Motor de inferência + explicação funcionando com as regras de "não liga" | Duda | 🔄 |
 | **16/11** | Contexto de negócio no README + cenários de teste escritos | Luciana | ⏳ |
 | **20/11** | Interface, exceções e testes automatizados prontos; todas as regras integradas | Luiza, Duda | ⏳ |
 | **22/11** | Dicionário de regras e roteiro do vídeo prontos | Todas | ⏳ |
