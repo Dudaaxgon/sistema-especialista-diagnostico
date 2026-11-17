@@ -242,8 +242,11 @@ Sintomas planejados para demonstrar a extensibilidade da base de conhecimento (a
 ## 7. Como executar
 
 ```bash
-# [preencher quando houver código]
+python motor.py
 ```
+
+O comando inicia a interface de terminal, apresenta o sintoma disponível, coleta
+as respostas aplicáveis e exibe o diagnóstico gerado pelo motor de inferência.
 
 ## 8. Testes
 
