@@ -83,7 +83,10 @@ def exibir_resultados(resultados: Sequence[Mapping[str, str]]) -> None:
     for indice, resultado in enumerate(resultados, start=1):
         causa = resultado.get("causa", "não identificado")
         acao = resultado.get("acao", "encaminhar_bancada")
-        explicacao = resultado.get("explicacao", "Não há explicação registrada.")
+        explicacao = resultado.get(
+            "por_que",
+            resultado.get("explicacao", "Não há explicação registrada."),
+        )
         print(f"\n{indice}. Causa: {causa}")
         print(f"   Ação: {acao}")
         print(f"   Como chegamos a essa conclusão: {explicacao}")
@@ -110,5 +113,16 @@ def executar_interface(
     exibir_resultados(resultados)
 
 
+def executar_questionario(
+    input_fn: Callable[[str], str] = input,
+) -> tuple[str, dict[str, str]]:
+    """Executa somente a coleta do sintoma e das respostas do cliente."""
+    sintoma = escolher_sintoma(input_fn)
+    respostas = coletar_respostas(sintoma, input_fn)
+    return sintoma, respostas
+
+
 if __name__ == "__main__":
-    print("A interface aguarda a integração com o motor de inferência.")
+    from motor import inferir
+
+    executar_interface(inferir)
