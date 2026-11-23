@@ -107,8 +107,12 @@ def executar_interface(
 ) -> None:
     """Executa o fluxo da interface usando a função de inferência recebida."""
     print("=== Dr. Byte — Pré-triagem ByteFix ===")
-    sintoma = escolher_sintoma(input_fn)
-    respostas = coletar_respostas(sintoma, input_fn)
+    try:
+        sintoma = escolher_sintoma(input_fn)
+        respostas = coletar_respostas(sintoma, input_fn)
+    except (EOFError, KeyboardInterrupt):
+        print("\n\nAtendimento encerrado antes de concluir. Nenhuma informação foi salva.")
+        return
     resultados = inferir(sintoma, respostas)
     exibir_resultados(resultados)
 
