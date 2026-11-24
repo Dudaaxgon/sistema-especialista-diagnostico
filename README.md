@@ -42,18 +42,19 @@ Algumas informações não são sintomas, mas pistas que ajudam a estreitar a ca
 ## 3. Abordagem técnica
 
 - **Linguagem:** Python
-- **Justificativa:** [escrever 2–3 frases — ex.: domínio da equipe, controle total sobre o motor de inferência e o módulo de explicação, facilidade para base de conhecimento externa (JSON) e testes automatizados, baixo risco de execução]
-- **Tipo de encadeamento:** [a definir — para frente ou para trás, com justificativa]
+- **Justificativa:** Python foi escolhido por ser a linguagem trabalhada pela equipe e permitir representar fatos e regras com estruturas simples. Isso facilita implementar e explicar o motor de inferência e o módulo de explicação, além de integrar a interface de terminal.
+- **Tipo de encadeamento:** encadeamento para frente. O motor parte das respostas coletadas, aplica as regras compatíveis com esses fatos e propaga conclusões intermediárias até não haver novas derivações, chegando a zero ou mais diagnósticos finais. Esse fluxo combina com a triagem, que começa pelas respostas do cliente e não por uma causa previamente escolhida. Condições negadas (`NÃO X`) só são avaliadas quando as entradas relevantes para provar `X` foram coletadas e as regras produtoras já foram consideradas, distinguindo fato falso de fato desconhecido.
 
 ## 4. Arquitetura
 
 | Componente | Função | Arquivo |
 |---|---|---|
-| Base de conhecimento | Fatos e regras do domínio | [a definir] |
-| Memória de trabalho | Fatos coletados na sessão atual | [a definir] |
-| Motor de inferência | Aplica as regras sobre os fatos | [a definir] |
-| Módulo de explicação | Justifica a conclusão ("por quê / como") | [a definir] |
-| Interface | Perguntas e respostas com o cliente | [a definir] |
+| Base de conhecimento | Regras lidas dos arquivos Markdown da pasta `regras/` | `regras/*.md` |
+| Memória de trabalho | Respostas coletadas na sessão atual (fatos conhecidos/desconhecidos) | Dicionário recebido por `motor.inferir` |
+| Motor de inferência | Encadeamento para frente, propagação de conclusões intermediárias e tratamento de negação com fato desconhecido | `motor.py` |
+| Módulo de explicação | Retorna causa, ação, regra(s) disparada(s) e justificativa ("por quê / como") | `motor.py` (campos `explicacao`, `como` e `por_que`) |
+| Interface | Perguntas e respostas com o cliente (terminal) | `interface.py` |
+| Testes automatizados | Validação do motor, explicação e cenários de inferência | `test_motor.py` |
 
 ## 5. Base de conhecimento
 
@@ -216,22 +217,50 @@ EXPLICAÇÃO: Tela azul sem mudança de software e sem superaquecimento aponta p
 ```
 
 ### Dicionário de regras
-| ID | Sintoma | Condições (SE) | Conclusão (ENTÃO) | Tipo |
+
+A base completa de regras está em `regras/*.md` (59 regras no total), que é o formato lido pelo motor. Abaixo, um resumo das regras por sintoma; consulte os arquivos de regras para condições, explicações e perguntas detalhadas.
+
+| ID | Sintoma | Condições (SE) — resumo | Conclusão (ENTÃO) | Tipo |
 |---|---|---|---|---|
-| R1 | nao_liga | trocou_tomada = sim E funcionou_outra_tomada = sim | tomada_defeituosa → cliente_resolve | final |
-| R2 | | | | |
-| DS1| desliga_sozinho | equipamento_muito_quente = sim | superaquecimento | intermediária |
-| DS2| desliga_sozinho | ventoinha_barulhenta_ou_parada = sim | superaquecimento | intermediária |
-| DS3| desliga_sozinho | desliga_em_uso_pesado = sim E sem_limpeza_ha_mais_de_1_ano = sim | superaquecimento | intermediária |
-| DS4| desliga_sozinho | superaquecimento = sim E tipo_equipamento = notebook E usa_sobre_cama_ou_sofa = sim | ventilacao_bloqueada → cliente_resolve | final |
-| DS5 | desliga_sozinho | superaquecimento = sim | limpeza_ou_pasta_termica → encaminhar_bancada | final |
-| DS6 | desliga_sozinho | tipo_equipamento = desktop E desliga_em_uso_pesado = sim E NÃO superaquecimento | fonte_insuficiente_ou_defeituosa → encaminhar_bancada | final |
-| DS7 | desliga_sozinho | desliga_ao_mexer_no_cabo_ou_tomada = sim | mau_contato_energia → cliente_resolve | final |
-| DS8 | desliga_sozinho | energia_da_casa_oscila = sim E NÃO superaquecimento | problema_rede_eletrica → cliente_resolve | final |
-| DS9 | desliga_sozinho | cheiro_de_queimado = sim | fonte_com_defeito → encaminhar_bancada | final |
-| DS10 | desliga_sozinho | tipo_equipamento = notebook E desliga_ao_tirar_carregador = sim | bateria_com_defeito → encaminhar_bancada | final |
-| DS11 | desliga_sozinho | tela_azul_antes_de_desligar = sim E instalou_programa_ou_driver_recentemente = sim | problema_software → cliente_resolve | final |
-| DS12 | desliga_sozinho | tela_azul_antes_de_desligar = sim E instalou_programa_ou_driver_recentemente = nao E NÃO superaquecimento | problema_memoria_ram → encaminhar_bancada | final |
+| NL-R1 | nao_liga | testou outra tomada e funcionou | tomada_original_com_problema → cliente_resolve | final |
+| NL-R2 | nao_liga | cabo de energia desconectado e sem sinal de vida | cabo_solto → cliente_resolve | final |
+| NL-R3 | nao_liga | desktop, chave da fonte desligada, sem sinal de vida | chave_fonte_desligada → cliente_resolve | final |
+| NL-R4 | nao_liga | filtro de linha desligado, sem sinal de vida | filtro_linha_desligado → cliente_resolve | final |
+| NL-R5 | nao_liga | notebook liga com carregador, mas não sem ele | possivel_falha_bateria → encaminhar_bancada | final |
+| NL-R6 | nao_liga | notebook, indicador do carregador apagado e não liga com ele | possivel_carregador_defeituoso → encaminhar_bancada | final |
+| NL-R7..R9 | nao_liga | verificações externas de energia corretas (desktop/notebook) | alimentacao_externa_ok | intermediária |
+| NL-R10 | nao_liga | alimentacao_externa_ok e sem sinal de vida | possivel_falha_interna_energia → encaminhar_bancada | final |
+| NL-R11 | nao_liga | sinal de vida, mas sem imagem na tela | computador_liga_sem_imagem | intermediária |
+| NL-R12..R14 | nao_liga | desktop sem imagem por monitor desligado/cabo solto | monitor_desligado / cabo_video_desconectado → cliente_resolve | final |
+| NL-R15 | nao_liga | desktop sem imagem com monitor e cabos ok | possivel_falha_de_video → encaminhar_bancada | final |
+| NL-R16 | nao_liga | notebook com sinal de vida e tela preta | possivel_falha_na_tela_ou_video → encaminhar_bancada | final |
+| SNI-R1 | sistema_nao_inicia | mensagem de disco/dispositivo não encontrado | problema_disco | intermediária |
+| SNI-R2 | sistema_nao_inicia | cliques/estalos na região do disco | problema_disco | intermediária |
+| SNI-R3 | sistema_nao_inicia | problema_disco | possivel_falha_disco → encaminhar_bancada | final |
+| SNI-R4 | sistema_nao_inicia | iniciou após desconectar USB | dispositivo_externo_impede_inicio → cliente_resolve | final |
+| SNI-R5 | sistema_nao_inicia | reinicia sem parar e NÃO problema_disco | possivel_falha_no_sistema → encaminhar_bancada | final |
+| SNI-R6 | sistema_nao_inicia | tela cinza persistente e NÃO problema_disco | possivel_falha_na_inicializacao → encaminhar_bancada | final |
+| SNI-R7 | sistema_nao_inicia | problema após atualização com reparo automático disponível | possivel_falha_apos_atualizacao → cliente_resolve | final |
+| LEN-R1..R2 | lento | equipamento esquenta muito e ventoinha com ruído alto | superaquecimento | intermediária |
+| LEN-R3 | lento | superaquecimento | possivel_superaquecimento → encaminhar_bancada | final |
+| LEN-R4..R5 | lento | muito quente, mas ventoinha silenciosa | possivel_falha_ventoinha → encaminhar_bancada | final |
+| LEN-R6 | lento | cliques/estalos no disco | problema_disco | intermediária |
+| LEN-R7 | lento | problema_disco | possivel_falha_disco → encaminhar_bancada | final |
+| LEN-R8 | lento | armazenamento quase cheio | pouco_espaco_armazenamento → cliente_resolve | final |
+| LEN-R9 | lento | melhora ao fechar programas | muitos_programas_em_uso → cliente_resolve | final |
+| LEN-R10 | lento | programas fecham sozinhos | possivel_falha_de_memoria_ou_software → encaminhar_bancada | final |
+| DS1..DS3 | desliga_sozinho | sinais de calor, ventoinha ou uso pesado sem limpeza | superaquecimento | intermediária |
+| DS4 | desliga_sozinho | superaquecimento, notebook usado em superfície macia | ventilacao_bloqueada → cliente_resolve | final |
+| DS5 | desliga_sozinho | superaquecimento | limpeza_ou_pasta_termica → encaminhar_bancada | final |
+| DS6 | desliga_sozinho | desktop desliga em uso pesado e NÃO superaquecimento | fonte_insuficiente_ou_defeituosa → encaminhar_bancada | final |
+| DS7 | desliga_sozinho | desliga ao mexer no cabo/tomada | mau_contato_energia → cliente_resolve | final |
+| DS8 | desliga_sozinho | energia oscila e NÃO superaquecimento | problema_rede_eletrica → cliente_resolve | final |
+| DS9 | desliga_sozinho | cheiro de queimado | fonte_com_defeito → encaminhar_bancada | final |
+| DS10 | desliga_sozinho | notebook desliga ao tirar carregador | bateria_com_defeito → encaminhar_bancada | final |
+| DS11 | desliga_sozinho | tela azul após instalar programa/driver | problema_software → cliente_resolve | final |
+| DS12 | desliga_sozinho | tela azul sem mudança recente e NÃO superaquecimento | problema_memoria_ram → encaminhar_bancada | final |
+| NC-R1..R7 | nao_carrega | regras de carregamento, tomada e bateria (notebook) | ver `regras/nao_carrega.md` | intermediária/final |
+| INT-R1..R7 | internet_nao_conecta | regras de Wi-Fi, cabo, roteador e rede | ver `regras/internet_nao_conecta.md` | intermediária/final |
 
 ## 6. Extensões futuras
 
@@ -241,16 +270,36 @@ Sintomas planejados para demonstrar a extensibilidade da base de conhecimento (a
 
 ## 7. Como executar
 
+Requisitos: Python 3 (testado com Python 3.14 no ambiente atual). Não há dependências externas obrigatórias.
+
 ```bash
-python motor.py
+# Interface de terminal (questionários atualmente cadastrados: "não carrega" e "internet não conecta")
+python3 interface.py
+
+# Alternativa equivalente (a interface usa o motor de inferência)
+python3 motor.py
 ```
 
-O comando inicia a interface de terminal, apresenta o sintoma disponível, coleta
-as respostas aplicáveis e exibe o diagnóstico gerado pelo motor de inferência.
+O comando inicia a interface de terminal, apresenta os sintomas disponíveis no menu, coleta as respostas aplicáveis e exibe o(s) diagnóstico(s) gerado(s) pelo motor de inferência (com explicação).
+
+O motor carrega automaticamente as regras de `regras/*.md`. Também é possível usar o motor diretamente em Python para inferir sobre qualquer sintoma cuja base de regras já exista:
+
+```python
+from motor import inferir
+
+resultados = inferir("nao_liga", {"testou_outra_tomada": "sim", "funcionou_outra_tomada": "sim"})
+print(resultados)
+```
 
 ## 8. Testes
 
-[descrever como rodar os testes e quais cenários são validados]
+Os testes automatizados do motor ficam em `test_motor.py` e validam encadeamento para frente, propagação de conclusões intermediárias, explicação ("como/por quê"), tratamento de negação com fatos desconhecidos e cenários representativos dos sintomas.
+
+```bash
+python3 -m unittest -v test_motor.py
+```
+
+> Observação: os cenários devem ser ampliados conforme os cenários de teste em texto definidos pela equipe (Luciana), mantendo os testes alinhados ao comportamento esperado das regras.
 
 ## 9. Integrantes
 

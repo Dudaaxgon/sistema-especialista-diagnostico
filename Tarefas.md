@@ -10,27 +10,27 @@
 
 ---
 
-## Status atual (atualizado em 10/11)
+## Status atual (atualizado em 23/11)
 
-- ✅ Regras de 5 dos 6 sintomas escritas e no repositório
-- 🔄 Ajustes nas regras de "internet não conecta" e "não carrega" solicitados à Luiza
-- ⏳ Regras de "desliga sozinho" (Luciana)
-- ⏳ Primeiro commit: 2 de 3 integrantes
-- 🔜 Próxima etapa: motor de inferência (Duda)
+- ✅ Regras dos 6 sintomas escritas e no repositório
+- ✅ Ajustes nas regras da Luiza aplicados
+- ✅ Primeiro commit: 3 de 3 integrantes
+- ✅ Motor de inferência (encadeamento para frente), módulo de explicação ("como/por quê") e testes automatizados iniciais implementados (`motor.py`, `test_motor.py`)
+- 🔄 Integração completa (interface com todos os sintomas), cenários de teste em texto, contexto de negócio e demais pendências do grupo
 
 ---
 
 ## Tarefas por pessoa
 
 ### Maria Eduarda (Duda)
-- [ ] Definir o tipo de encadeamento (para frente ou para trás) e a justificativa
+- [x] Definir o tipo de encadeamento (para frente ou para trás) e a justificativa
 - [x] Escrever as regras dos sintomas **"não liga"**, **"sistema não inicia"** e **"lento, travando ou fechando programas"** (mínimo 6 regras cada)
 - [x] Revisar as regras da Luiza e enviar os ajustes necessários
-- [ ] Implementar o **motor de inferência**, incluindo condições negadas (ex.: `NÃO problema_disco`) e distinguindo fato falso de fato desconhecido; só avaliar negação após coletar as respostas aplicáveis e concluir as inferências
-- [ ] Implementar o **módulo de explicação** ("por quê / como")
-- [ ] Implementar os **testes automatizados** a partir dos cenários escritos pela Luciana
-- [ ] Converter as regras de todas para o formato final usado pelo código
-- [ ] Integrar as partes e revisar o código do grupo
+- [x] Implementar o **motor de inferência**, incluindo condições negadas (ex.: `NÃO problema_disco`) e distinguindo fato falso de fato desconhecido; só avaliar negação após coletar as respostas aplicáveis e concluir as inferências
+- [x] Implementar o **módulo de explicação** ("por quê / como")
+- [x] Implementar os **testes automatizados** iniciais (a ampliar com os cenários em texto da Luciana quando disponíveis)
+- [x] Converter as regras de todas para o formato final usado pelo código (regras em `regras/*.md`, carregadas pelo motor)
+- [ ] Integrar as partes e revisar o código do grupo (integração com interface de todos os sintomas e revisão final ainda pendentes)
 - [ ] Fazer uma **chamada curta explicando o código** para o grupo antes da gravação
 
 ### Luiza Ribeiro
@@ -48,8 +48,8 @@
 - [ ] Conferir que o **repositório está público** e que o **link do vídeo está com visualização liberada** (abrir os dois links numa aba anônima para testar)
 
 ### Todas
-- [ ] Fazer pelo menos um commit nesta semana (2 de 3 já fizeram)
-- [ ] Preencher o **dicionário de regras** do README com as **próprias regras**
+- [x] Fazer pelo menos um commit nesta semana
+- [ ] Preencher o **dicionário de regras** do README com as **próprias regras** (Duda: NL, SNI e LEN adicionados; revisar/completar conforme necessário)
 - [ ] Montar juntas o **roteiro do vídeo** (10 min, dividindo o tempo entre as três)
 - [ ] Usar **exatamente os nomes do glossário** de conclusões intermediárias (seção 5 do README). Para criar uma conclusão compartilhada nova, adicionar no glossário antes de usar
 - [ ] Ler e entender o código completo antes da gravação
@@ -77,12 +77,12 @@ Use o formato da seção 5 do README. Para cada sintoma:
 
 | Prazo | Entrega | Responsável | Status |
 |---|---|---|---|
-| **10/11** | Primeiro commit de cada pessoa | Todas | 🔄 2 de 3 |
-| **11/11** | Regras de "não liga", "não carrega" e "internet não conecta" escritas no formato padrão | Duda, Luiza | ✅ (ajustes da Luiza pendentes) |
-| **14/11** | Regras de "sistema não inicia", "lento" e "desliga sozinho" escritas | Duda, Luciana | 🔄 Duda ✅ · Luciana pendente |
-| **15/11** | Motor de inferência + explicação funcionando com as regras de "não liga" | Duda | ⏳ |
+| **10/11** | Primeiro commit de cada pessoa | Todas | ✅ |
+| **11/11** | Regras de "não liga", "não carrega" e "internet não conecta" escritas no formato padrão | Duda, Luiza | ✅ |
+| **14/11** | Regras de "sistema não inicia", "lento" e "desliga sozinho" escritas | Duda, Luciana | ✅ |
+| **15/11** | Motor de inferência + explicação funcionando com as regras de "não liga" | Duda | ✅ |
 | **16/11** | Contexto de negócio no README + cenários de teste escritos | Luciana | ⏳ |
-| **20/11** | Interface, exceções e testes automatizados prontos; todas as regras integradas | Luiza, Duda | ⏳ |
+| **20/11** | Interface, exceções e testes automatizados prontos; todas as regras integradas | Luiza, Duda | 🔄 |
 | **22/11** | Dicionário de regras e roteiro do vídeo prontos | Todas | ⏳ |
 | **22/11** | Chamada de explicação do código para o grupo | Duda | ⏳ |
 | **23/11** | Sistema completo, testado em pelo menos 2 computadores diferentes; README finalizado | Todas | ⏳ |

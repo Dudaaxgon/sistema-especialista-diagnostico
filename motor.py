@@ -142,6 +142,8 @@ def inferir(
     def condicao_positiva(condicao: Condicao) -> bool:
         if condicao.operador == "verdadeiro":
             return condicao.fato in derivados
+        if condicao.fato in derivados and condicao.valor == "sim":
+            return True
         valor = memoria.get(condicao.fato)
         return valor is not None and valor == condicao.valor
 
@@ -193,7 +195,9 @@ def inferir(
             if condicao.fato in derivados:
                 return [f"{condicao.fato} foi confirmado; portanto, a condição NÃO {condicao.fato} não vale"]
             return [f"NÃO {condicao.fato}: as entradas relevantes foram coletadas ({respostas_relevantes}) e nenhuma regra confirmou {condicao.fato}"]
-        if condicao.operador == "verdadeiro":
+        if condicao.operador in {"verdadeiro", "igual"} and condicao.fato in derivados and (
+            condicao.operador == "verdadeiro" or condicao.valor == "sim"
+        ):
             if condicao.fato in visitados:
                 return [f"{condicao.fato} (conclusão intermediária já detalhada)"]
             visitados.add(condicao.fato)

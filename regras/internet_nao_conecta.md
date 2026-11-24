@@ -16,10 +16,7 @@ Responsável: Luiza Ribeiro
 | `funciona_com_cabo_rede` | A internet funciona quando o computador é conectado por cabo de rede? | sim / nao |
 | `reiniciou_roteador` | Você já reiniciou o roteador e esperou alguns minutos? | sim / nao |
 | `internet_voltou_apos_reiniciar` | A internet voltou depois de reiniciar o roteador? | sim / nao |
-<<<<<<< HEAD
-=======
 
->>>>>>> ba7eeb8b2805f752af99fb998cf204474b7b40b9
 
 Pergunte sobre `cabo_rede_conectado` e `funciona_com_cabo_rede` quando o equipamento puder ser testado com cabo.
 Pergunte `internet_voltou_apos_reiniciar` somente se `reiniciou_roteador = sim`.
