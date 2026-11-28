@@ -15,7 +15,7 @@
 - [x] Contexto de negócio, arquitetura, glossário e resumo das regras no README.
 - [x] Doze cenários de teste em linguagem natural, dois por sintoma:
   [Cenarios_de_teste.md](Cenarios_de_teste.md).
-- [x] Testes automatizados do motor e da interface: 13 testes aprovados na
+- [x] Testes automatizados do motor e da interface: 15 testes aprovados na
   execução local.
 - [x] Histórico do repositório já registra commits dos três integrantes,
   conforme o acompanhamento anterior do grupo.

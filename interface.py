@@ -52,6 +52,7 @@ PERGUNTAS = {
         ("tipo_equipamento", "O equipamento é um notebook ou um computador de mesa?", ("notebook", "desktop")),
         ("carregador_conectado", "O carregador está conectado ao notebook?", ("sim", "nao")),
         ("carregador_conectando_desconectando", "O carregador fica conectando e desconectando sozinho?", ("sim", "nao")),
+        ("carregador_tem_indicador", "O carregador tem uma luz indicadora?", ("sim", "nao")),
         ("indicador_carregador_aceso", "A luz indicadora do carregador acende quando ele está na tomada?", ("sim", "nao")),
         ("notebook_indica_carregamento", "O notebook mostra que está carregando quando o carregador é conectado?", ("sim", "nao")),
         ("bateria_aumenta_carga", "A porcentagem da bateria aumenta depois de alguns minutos conectado?", ("sim", "nao")),
@@ -142,6 +143,8 @@ def deve_perguntar(fato: str, respostas: Mapping[str, str]) -> bool:
         return respostas.get("tipo_equipamento") == "notebook"
     if fato == "desliga_ao_tirar_carregador":
         return respostas.get("tipo_equipamento") == "notebook"
+    if fato == "instalou_programa_ou_driver_recentemente":
+        return respostas.get("tela_azul_antes_de_desligar") == "sim"
     if fato == "internet_voltou_apos_reiniciar":
         return respostas.get("reiniciou_roteador") == "sim"
     return True

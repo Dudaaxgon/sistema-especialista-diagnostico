@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from interface import coletar_respostas, executar_interface, ler_opcao
+from interface import coletar_respostas, deve_perguntar, executar_interface, ler_opcao
 from motor import inferir
 
 
@@ -15,18 +15,50 @@ class InterfaceTests(unittest.TestCase):
         imprimir.assert_called()
 
     def test_questionario_nao_carrega_coleta_condicionais(self):
-        respostas = iter(("notebook", "nao", "nao", "nao", "nao", "nao", "nao", "nao", "nao", "nao"))
-        sintoma, fatos = "nao_carrega", {}
-        fatos = coletar_respostas(sintoma, lambda _: next(respostas))
+        respostas = iter(("notebook", "sim", "nao", "sim", "sim", "sim", "nao", "sim", "nao"))
+        fatos = coletar_respostas("nao_carrega", lambda _: next(respostas))
 
         self.assertEqual(fatos["tipo_equipamento"], "notebook")
+        self.assertEqual(fatos["carregador_tem_indicador"], "sim")
+        self.assertEqual(fatos["indicador_carregador_aceso"], "sim")
+        resultados = inferir("nao_carrega", fatos)
+        self.assertIn(
+            ("possivel_falha_bateria", "encaminhar_bancada"),
+            {(resultado["causa"], resultado["acao"]) for resultado in resultados},
+        )
         self.assertIn("carregador_ou_cabo_danificado", fatos)
+
+    def test_questionario_nao_carrega_pula_luz_sem_indicador(self):
+        respostas = iter(("notebook", "sim", "nao", "nao", "nao", "sim", "sim", "nao"))
+        fatos = coletar_respostas("nao_carrega", lambda _: next(respostas))
+
+        self.assertEqual(fatos["carregador_tem_indicador"], "nao")
+        self.assertNotIn("indicador_carregador_aceso", fatos)
+        resultados = inferir("nao_carrega", fatos)
+        self.assertIn(
+            ("possivel_falha_no_carregador_ou_entrada", "encaminhar_bancada"),
+            {(resultado["causa"], resultado["acao"]) for resultado in resultados},
+        )
 
     def test_todos_sintomas_possuem_questionario(self):
         from interface import PERGUNTAS, SINTOMAS
 
         for sintoma, _ in SINTOMAS.values():
             self.assertIn(sintoma, PERGUNTAS)
+
+    def test_pergunta_de_software_so_aparece_apos_tela_azul(self):
+        self.assertTrue(
+            deve_perguntar(
+                "instalou_programa_ou_driver_recentemente",
+                {"tela_azul_antes_de_desligar": "sim"},
+            )
+        )
+        self.assertFalse(
+            deve_perguntar(
+                "instalou_programa_ou_driver_recentemente",
+                {"tela_azul_antes_de_desligar": "nao"},
+            )
+        )
 
     def test_informacoes_insuficientes_exibem_mensagem(self):
         with patch("builtins.print") as imprimir:

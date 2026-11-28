@@ -10,6 +10,7 @@ Responsável: Luiza Ribeiro
 | `tipo_equipamento` | O equipamento é um notebook ou um computador de mesa? | notebook / desktop |
 | `carregador_conectado` | O carregador está conectado ao notebook? | sim / nao |
 | `carregador_conectando_desconectando` | O carregador fica conectando e desconectando sozinho? | sim / nao |
+| `carregador_tem_indicador` | O carregador tem uma luz indicadora? | sim / nao |
 | `indicador_carregador_aceso` | A luz indicadora do carregador acende quando ele está na tomada? | sim / nao |
 | `notebook_indica_carregamento` | O notebook mostra que está carregando quando o carregador é conectado? | sim / nao |
 | `bateria_aumenta_carga` | A porcentagem da bateria aumenta depois de alguns minutos conectado? | sim / nao |
@@ -20,6 +21,7 @@ Responsável: Luiza Ribeiro
 
 Pergunte sobre `testou_outra_tomada` somente se `tomada_funciona = nao`.
 Pergunte `funcionou_outra_tomada` somente se `testou_outra_tomada = sim`.
+Pergunte sobre `indicador_carregador_aceso` somente se `carregador_tem_indicador = sim`.
 
 ## Regras
 
@@ -43,9 +45,10 @@ TIPO:   final
 AÇÃO:   encaminhar_bancada
 EXPLICAÇÃO: O carregador conecta e desconecta sozinho, o que pode indicar mau contato no cabo, no conector ou na entrada do notebook.
 
-### NC-R3 — Carregador sem indicador luminoso
+### NC-R3 — Indicador do carregador apagado
 SE:     tipo_equipamento = notebook
         E carregador_conectado = sim
+        E carregador_tem_indicador = sim
         E indicador_carregador_aceso = nao
         E notebook_indica_carregamento = nao
 ENTÃO:  causa = possivel_carregador_defeituoso
