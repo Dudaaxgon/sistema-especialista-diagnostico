@@ -1,98 +1,47 @@
-# Divisão de tarefas e cronograma
+# Pendências de entrega — Dr. Byte
 
-**Entrega final:** 28/11/2026 às 23:59 (PDF no Teams com link do GitHub + link do vídeo).
-**Meta interna:** entregar no dia 27/11, com margem.
+**Atualizado em:** 28/11/2026
+**Prazo final:** 28/11/2026 às 23h59 — envio do PDF no Teams.
 
-> ⚠️ **Regras do trabalho que afetam a nota de TODAS:**
-> - Cada pessoa precisa ter **commits próprios** no GitHub. Quem não tiver commits pode ter a nota reduzida (item 1.7.1).
-> - No vídeo, **cada pessoa precisa saber explicar QUALQUER parte do código**, inclusive a das outras (itens 2.4 e 2.5). Então todas precisam ler e entender o código todo, não só a sua parte.
-> - App que não roda na máquina do professor = **nota zero**.
+## Concluído no repositório
 
----
+- [x] Regras dos seis sintomas documentadas e integradas à base (59 regras).
+- [x] Motor de inferência com encadeamento para frente, conclusões
+  intermediárias e tratamento de negação sem confundir fato desconhecido com
+  fato falso.
+- [x] Explicações do raciocínio ("como" e "por quê").
+- [x] Interface de terminal com questionários dos seis sintomas, perguntas
+  condicionais, validação de respostas e mensagem quando não há diagnóstico.
+- [x] Contexto de negócio, arquitetura, glossário e resumo das regras no README.
+- [x] Doze cenários de teste em linguagem natural, dois por sintoma:
+  [Cenarios_de_teste.md](Cenarios_de_teste.md).
+- [x] Testes automatizados do motor e da interface: 13 testes aprovados na
+  execução local.
+- [x] Histórico do repositório já registra commits dos três integrantes,
+  conforme o acompanhamento anterior do grupo.
 
-## Status atual (atualizado em 23/11)
+## Ações finais do grupo
 
-- ✅ Regras dos 6 sintomas escritas e no repositório
-- ✅ Ajustes nas regras da Luiza aplicados
-- ✅ Primeiro commit: 3 de 3 integrantes
-- ✅ Motor de inferência (encadeamento para frente), módulo de explicação ("como/por quê") e testes automatizados iniciais implementados (`motor.py`, `test_motor.py`)
-- 🔄 Integração completa (interface com todos os sintomas), cenários de teste em texto, contexto de negócio e demais pendências do grupo
+| Tarefa | Responsável combinado | Situação |
+|---|---|---|
+| Fazer uma chamada curta para explicar o código ao grupo | Duda | [ ] Pendente |
+| Revisar o roteiro do vídeo em conjunto e dividir as falas | Todas | [ ] Pendente |
+| Ler e entender o código completo antes da gravação | Todas | [ ] Pendente |
+| Testar o sistema em pelo menos dois computadores diferentes | Todas | [ ] Pendente |
+| Gravar a reunião/apresentação com todas participando (9 a 11 minutos) | Todas | [ ] Pendente |
+| Preparar o PDF final com nomes completos, link do GitHub e link do vídeo | Luciana | [ ] Pendente |
+| Conferir o acesso ao repositório e ao vídeo, inclusive em janela anônima | Luciana | [ ] Pendente |
+| Enviar o PDF final à equipe da disciplina pelo Teams antes das 23h59 | Uma integrante | [ ] Pendente |
 
----
+O PDF presente no repositório é o documento de orientações da disciplina, não
+o PDF final de entrega. O vídeo ainda precisa ser gravado e seu link precisa
+ser incluído no documento final. A gravação, a conferência de permissões e o
+envio pelo Teams dependem do grupo e não podem ser confirmados apenas pelo
+repositório.
 
-## Tarefas por pessoa
+## Verificação do quadro remoto
 
-### Maria Eduarda (Duda)
-- [x] Definir o tipo de encadeamento (para frente ou para trás) e a justificativa
-- [x] Escrever as regras dos sintomas **"não liga"**, **"sistema não inicia"** e **"lento, travando ou fechando programas"** (mínimo 6 regras cada)
-- [x] Revisar as regras da Luiza e enviar os ajustes necessários
-- [x] Implementar o **motor de inferência**, incluindo condições negadas (ex.: `NÃO problema_disco`) e distinguindo fato falso de fato desconhecido; só avaliar negação após coletar as respostas aplicáveis e concluir as inferências
-- [x] Implementar o **módulo de explicação** ("por quê / como")
-- [x] Implementar os **testes automatizados** iniciais (a ampliar com os cenários em texto da Luciana quando disponíveis)
-- [x] Converter as regras de todas para o formato final usado pelo código (regras em `regras/*.md`, carregadas pelo motor)
-- [ ] Integrar as partes e revisar o código do grupo (integração com interface de todos os sintomas e revisão final ainda pendentes)
-- [ ] Fazer uma **chamada curta explicando o código** para o grupo antes da gravação
-
-### Luiza Ribeiro
-- [x] Escrever as regras do sintoma **"não carrega"** (mínimo 6 regras; só notebook; incluir o caso do carregador conectando e desconectando)
-- [x] Escrever as regras do sintoma **"internet não conecta"** (mínimo 6 regras)
-- [ ] Aplicar os ajustes da revisão (fato com espaço no nome, INT-R3, INT-R4, INT-R5, fato sem uso, regras intermediárias, `alimentacao_externa_ok` no "não carrega")
-- [ ] Implementar a **interface de perguntas e respostas** (terminal)
-- [ ] Implementar o **tratamento de entradas inválidas** e o caso **"não foi possível concluir"**
-
-### Luciana Tavares
-- [ ] Escrever as regras do sintoma **"desliga sozinho"** (mínimo 6 regras; usar a conclusão `superaquecimento` do glossário)
-- [ ] Preencher a seção **"Contexto de negócio"** do README
-- [ ] Escrever **cenários de teste** em texto (sem código): para cada sintoma, 2 situações com as respostas do cliente e o diagnóstico esperado
-- [ ] Montar o **PDF de entrega** (nomes completos, link do GitHub, link do vídeo)
-- [ ] Conferir que o **repositório está público** e que o **link do vídeo está com visualização liberada** (abrir os dois links numa aba anônima para testar)
-
-### Todas
-- [x] Fazer pelo menos um commit nesta semana
-- [ ] Preencher o **dicionário de regras** do README com as **próprias regras** (Duda: NL, SNI e LEN adicionados; revisar/completar conforme necessário)
-- [ ] Montar juntas o **roteiro do vídeo** (10 min, dividindo o tempo entre as três)
-- [ ] Usar **exatamente os nomes do glossário** de conclusões intermediárias (seção 5 do README). Para criar uma conclusão compartilhada nova, adicionar no glossário antes de usar
-- [ ] Ler e entender o código completo antes da gravação
-- [ ] Testar o sistema na própria máquina seguindo o "Como executar" do README
-- [ ] Participar da gravação
-
----
-
-## Como escrever as regras
-
-Use o formato da seção 5 do README. Para cada sintoma:
-
-1. Liste as **causas possíveis** desse problema.
-2. Para cada par de causas, pense: **que pergunta separa uma da outra?** Essa pergunta vira uma condição.
-3. Procure **conclusões intermediárias**: conclusões que não são o diagnóstico final, mas que outras regras usam (ex.: `superaquecimento`). Confira o glossário antes de inventar um nome novo.
-4. Use `tipo_equipamento` como condição **só quando o raciocínio muda** entre notebook e desktop. Não duplique regras.
-5. Diferencie **sintoma** (o motivo de o cliente procurar ajuda) de **evidência** (uma pista, como ruído na ventoinha).
-6. Escreva as perguntas em **linguagem simples**: quem usa o sistema é o cliente, não um técnico.
-
-**Não escreva como fluxograma** ("primeiro pergunta X, se sim pergunta Y..."). Cada regra deve ser independente: só condições → conclusão.
-
----
-
-## Cronograma
-
-| Prazo | Entrega | Responsável | Status |
-|---|---|---|---|
-| **10/11** | Primeiro commit de cada pessoa | Todas | ✅ |
-| **11/11** | Regras de "não liga", "não carrega" e "internet não conecta" escritas no formato padrão | Duda, Luiza | ✅ |
-| **14/11** | Regras de "sistema não inicia", "lento" e "desliga sozinho" escritas | Duda, Luciana | ✅ |
-| **15/11** | Motor de inferência + explicação funcionando com as regras de "não liga" | Duda | ✅ |
-| **16/11** | Contexto de negócio no README + cenários de teste escritos | Luciana | ⏳ |
-| **20/11** | Interface, exceções e testes automatizados prontos; todas as regras integradas | Luiza, Duda | 🔄 |
-| **22/11** | Dicionário de regras e roteiro do vídeo prontos | Todas | ⏳ |
-| **22/11** | Chamada de explicação do código para o grupo | Duda | ⏳ |
-| **23/11** | Sistema completo, testado em pelo menos 2 computadores diferentes; README finalizado | Todas | ⏳ |
-| **24–26/11** | Gravação do vídeo (entre 9 e 11 minutos) | Todas | ⏳ |
-| **27/11** | PDF montado e enviado no Teams | Luciana | ⏳ |
-
-Legenda: ✅ concluído · 🔄 em andamento · ⏳ não iniciado
-
-### Diferenciais (só se sobrar tempo, depois de 20/11)
-- [ ] Base de conhecimento em arquivo externo (JSON)
-- [ ] Novos sintomas como demonstração de extensibilidade: congelamento e programas fechando sozinhos (depende do JSON)
-- [ ] Fatores de certeza nas regras
-- [ ] Interface web (Flask ou Streamlit)
+Na conferência de 28/11/2026, não havia issues abertas nem pull requests abertos
+no repositório. As pendências acima ficam registradas neste arquivo; elas não
+foram criadas como issues porque várias dependem de ações presenciais do grupo,
+gravação e envio no Teams.

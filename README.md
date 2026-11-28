@@ -54,7 +54,7 @@ Algumas informações não são sintomas, mas pistas que ajudam a estreitar a ca
 | Motor de inferência | Encadeamento para frente, propagação de conclusões intermediárias e tratamento de negação com fato desconhecido | `motor.py` |
 | Módulo de explicação | Retorna causa, ação, regra(s) disparada(s) e justificativa ("por quê / como") | `motor.py` (campos `explicacao`, `como` e `por_que`) |
 | Interface | Perguntas e respostas com o cliente (terminal) | `interface.py` |
-| Testes automatizados | Validação do motor, explicação e cenários de inferência | `test_motor.py` |
+| Testes automatizados | Validação do motor, explicação, inferência e interface | `test_motor.py`, `test_interface.py` |
 
 ## 5. Base de conhecimento
 
@@ -273,7 +273,7 @@ Sintomas planejados para demonstrar a extensibilidade da base de conhecimento (a
 Requisitos: Python 3 (testado com Python 3.14 no ambiente atual). Não há dependências externas obrigatórias.
 
 ```bash
-# Interface de terminal (questionários atualmente cadastrados: "não carrega" e "internet não conecta")
+# Interface de terminal com questionários dos seis sintomas
 python3 interface.py
 
 # Alternativa equivalente (a interface usa o motor de inferência)
@@ -293,13 +293,15 @@ print(resultados)
 
 ## 8. Testes
 
-Os testes automatizados do motor ficam em `test_motor.py` e validam encadeamento para frente, propagação de conclusões intermediárias, explicação ("como/por quê"), tratamento de negação com fatos desconhecidos e cenários representativos dos sintomas.
+Os testes automatizados ficam em `test_motor.py` e `test_interface.py`. Eles
+validam o encadeamento para frente, as conclusões intermediárias, as
+explicações, a negação com fatos desconhecidos, os questionários dos seis
+sintomas, as entradas inválidas e os casos sem diagnóstico. Há também cenários
+de teste em linguagem natural em [Cenarios_de_teste.md](Cenarios_de_teste.md).
 
 ```bash
-python3 -m unittest -v test_motor.py
+python3 -m unittest -v test_motor.py test_interface.py
 ```
-
-> Observação: os cenários devem ser ampliados conforme os cenários de teste em texto definidos pela equipe (Luciana), mantendo os testes alinhados ao comportamento esperado das regras.
 
 ## 9. Integrantes
 
@@ -308,3 +310,7 @@ python3 -m unittest -v test_motor.py
 | Maria Eduarda Pires | Motor de inferência, módulo de explicação, testes automatizados, regras "não liga", "sistema não inicia" e "lento", integração |
 | Luiza Ribeiro | Regras "não carrega" e "internet não conecta", interface e validação de entradas |
 | Luciana Tavares | Regras "desliga sozinho", contexto de negócio, cenários de teste, dicionário de regras, roteiro do vídeo e PDF de entrega |
+
+## Acompanhamento da entrega
+
+As pendências finais do grupo estão registradas em [Tarefas.md](Tarefas.md).
